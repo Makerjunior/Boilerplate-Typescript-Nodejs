@@ -28,6 +28,16 @@
 
   // Run Jest ( test CI )
     npm run test:ci
+
+  // Shelljs
+    npm i shelljs inquirer@^8.0.0
+
+  // 
+  npm - --save-dev @types/inquirer @types/shelljs 
+
+
+
+
 ```
 
 ---
