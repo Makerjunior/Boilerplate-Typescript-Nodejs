@@ -1,4 +1,4 @@
-export interface IAnswers{
-    tech:String;
-    folderName:String;
+export interface IAnswers {
+  techName: any;
+  tech: String;
 }

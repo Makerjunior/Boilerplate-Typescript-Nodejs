@@ -1,6 +1,8 @@
 import { EChoicesBoilerPlate } from 'enuns/choices.boilers.enum';
 import path from 'node:path';
 import fs from 'node:fs';
+import { EError } from 'enuns/error.msg.enun';
+import { GitRepository } from 'enuns/git.repository.enum';
 
 export const questions = [
   {
@@ -15,16 +17,19 @@ export const questions = [
     message: 'Give a name to the project folder:',
     validate: (folderName: string) => {
       if (/[^\w\s-]/.test(folderName)) {
-        return 'Invalid name! Use valid characters.';
+        return EError.InvalidName;
       } else if (!folderName) {
         return 'Please enter a name.';
-      } else if (folderName === 'boilerplate-typescript-nodejs' || folderName === 'boilerplate-scss') {
-        return 'Cannot create with this name.';
+      } else if (
+        folderName === GitRepository.NODEJS ||
+        folderName === GitRepository.SCSS
+      ) {
+        return EError.NameUnavailable;
       } else {
         try {
           const dir = path.resolve(folderName);
           fs.accessSync(dir, fs.constants.R_OK);
-          return 'Folder with the same name already exists.';
+          return EError.FolderExists;
         } catch (error) {
           // Folder doesn't exist, so it's a valid name.
         }
