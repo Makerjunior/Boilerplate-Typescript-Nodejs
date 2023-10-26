@@ -1,4 +1,4 @@
-
+#!/usr/bin/env node
 
 import { GeFile } from "controller/generate.controller";
 import inquirer from "inquirer";
